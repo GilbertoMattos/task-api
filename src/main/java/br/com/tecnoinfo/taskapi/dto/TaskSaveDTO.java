@@ -1,7 +1,12 @@
 package br.com.tecnoinfo.taskapi.dto;
 
-public class TaskSaveDTO {
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-    private Integer id;
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class TaskSaveDTO {
     private String nome;
 }

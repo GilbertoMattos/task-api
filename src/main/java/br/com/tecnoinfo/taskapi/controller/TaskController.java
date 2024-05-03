@@ -7,6 +7,9 @@ import br.com.tecnoinfo.taskapi.dto.TaskSaveDTO;
 import br.com.tecnoinfo.taskapi.service.TaskService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +25,8 @@ public class TaskController {
     }
 
     @GetMapping
-    public ResponseDefaultDTO<TaskDTO> consultar(TaskFilterDTO payload) {
-        return ResponseDefaultDTO.<TaskDTO>builder().content(taskService.consultar(payload)).build();
+    public Page<TaskDTO> consultar(@PageableDefault(value = 50) Pageable pageable, TaskFilterDTO filter) {
+        return taskService.consultar(filter, pageable);
     }
 
     @PostMapping

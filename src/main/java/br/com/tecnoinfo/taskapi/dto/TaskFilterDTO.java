@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TaskFilterDTO {
 
-    private Integer id;
+    private Long id;
     private String nome;
 }

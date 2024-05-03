@@ -3,10 +3,16 @@ server:
 spring:
   application:
     name: task-api
+  flyway:
+    enabled: true
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    database: postgresql
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/tecnoinfo
-    password: "postgres"
-    username: "postgres"
+    url: jdbc:postgresql://dpg-copugh4f7o1s73e7n6gg-a.oregon-postgres.render.com/tecnoinfo_p6tc
+    password: "jeSFKU2OQolgkaDgaRi5T6ZejauMvrL0"
+    username: "tecnoinfo"
     driver-class-name: org.postgresql.Driver
     type: com.zaxxer.hikari.HikariDataSource
     hikari:
