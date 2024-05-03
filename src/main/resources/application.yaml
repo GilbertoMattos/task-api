@@ -1,0 +1,27 @@
+server:
+  port: 8882
+spring:
+  application:
+    name: task-api
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/tecnoinfo
+    password: "postgres"
+    username: "postgres"
+    driver-class-name: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      maximum-pool-size: 50
+      pool-name: "pg-pool-tecnoinfo"
+      minimum-idle: 5
+springdoc:
+  packages-to-scan: br.com.tecnoinfo.taskapi.controller
+  api-docs:
+    enabled: true
+  swagger-ui:
+    doc-expansion: none
+    path: /
+    enabled: true
+swagger:
+  titulo: TASK-API
+  descricao: Servico de tasks
+  versao: '@project.version@'

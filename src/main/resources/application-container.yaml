@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    show-sql: ${SHOW_SQL:false}
+    generate-ddl: false
+    database: postgresql
+  datasource:
+    url: ${DATABASE_URL}
+    password: ${DATABASE_USERNAME}
+    username: ${DATABASE_PASSWORD}
