@@ -25,8 +25,15 @@ public class TaskController {
     }
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Page<TaskDTO> consultar(@PageableDefault(value = 50) Pageable pageable, TaskFilterDTO filter) {
         return taskService.consultar(filter, pageable);
+    }
+
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseDefaultDTO<TaskDTO> consultar(@PathVariable Long id) {
+        return ResponseDefaultDTO.<TaskDTO>builder().content(taskService.consultar(id)).build();
     }
 
     @PostMapping

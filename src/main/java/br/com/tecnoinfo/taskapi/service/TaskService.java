@@ -3,6 +3,7 @@ package br.com.tecnoinfo.taskapi.service;
 import br.com.tecnoinfo.taskapi.dto.TaskDTO;
 import br.com.tecnoinfo.taskapi.dto.TaskFilterDTO;
 import br.com.tecnoinfo.taskapi.dto.TaskSaveDTO;
+import br.com.tecnoinfo.taskapi.exception.RegistryNotFoundException;
 import br.com.tecnoinfo.taskapi.model.Task;
 import br.com.tecnoinfo.taskapi.repository.TaskRepository;
 import org.modelmapper.ModelMapper;
@@ -21,6 +22,10 @@ public class TaskService {
     public TaskService(TaskRepository taskRepository, ModelMapper modelMapper) {
         this.taskRepository = taskRepository;
         this.modelMapper = modelMapper;
+    }
+
+    public TaskDTO consultar(Long id) {
+        return modelMapper.map(taskRepository.findById(id).orElseThrow(RegistryNotFoundException::new), TaskDTO.class);
     }
 
     public Page<TaskDTO> consultar(TaskFilterDTO filter, Pageable pageable) {
