@@ -43,4 +43,8 @@ public class TaskService {
         var produto = taskRepository.save(modelMapper.map(payload, Task.class));
         return modelMapper.map(produto, TaskDTO.class);
     }
+
+    public void remover(Long id) {
+        taskRepository.deleteById(id);
+    }
 }

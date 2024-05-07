@@ -7,6 +7,7 @@ import br.com.tecnoinfo.taskapi.dto.TaskSaveDTO;
 import br.com.tecnoinfo.taskapi.service.TaskService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -26,7 +27,7 @@ public class TaskController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    public Page<TaskDTO> consultar(@PageableDefault(value = 50) Pageable pageable, TaskFilterDTO filter) {
+    public Page<TaskDTO> consultar(@ParameterObject @PageableDefault(value = 50) Pageable pageable, @ParameterObject TaskFilterDTO filter) {
         return taskService.consultar(filter, pageable);
     }
 
@@ -40,5 +41,11 @@ public class TaskController {
     @ResponseStatus(HttpStatus.CREATED)
     public ResponseDefaultDTO<TaskDTO> salvar(@Valid @RequestBody TaskSaveDTO payload) {
         return ResponseDefaultDTO.<TaskDTO>builder().content(taskService.salvar(payload)).build();
+    }
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void remover(@PathVariable Long id) {
+        taskService.remover(id);
     }
 }
